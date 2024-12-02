@@ -1,0 +1,38 @@
+{% extends "creator_app/base2.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<tbody>
+    {% for passenger1 in reg_passenger_list %}
+    <tr class="border-b hover:bg-gray-50">
+        <!-- Passenger Data -->
+        <td class="py-2 px-4 whitespace-nowrap">{{ passenger1.name }}</td>
+        <td class="py-2 px-4 whitespace-nowrap">{{ passenger1.mobile }}</td>
+        <td class="py-2 px-4 whitespace-nowrap">{{ passenger1.category }}</td>
+        <td class="py-2 px-4 whitespace-nowrap">{{ passenger1.package }}</td>
+        
+    </tr>
+    {% endfor %}
+</tbody>
+
+
+<form action="" method="post" autocomplete="off" class="space-y-6 bg-white shadow-md rounded-lg p-6 max-w-4xl mx-auto">
+    {% csrf_token %}
+    <div>
+        {{ form.card_id1|as_crispy_field }}
+    </div>
+    <div class="flex justify-end">
+        <button type="submit" class="flex items-center px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
+            <i class="fas fa-database mr-2"></i>
+            Submit
+        </button>
+    </div>
+    <div class="col-span-4">
+        <a href="{% url 'creator_app:admin_passenger_list' %}" class="block bg-gray-500 text-white text-center py-2 rounded-md hover:bg-gray-600">
+            <i class="fas fa-stream"></i> Back to the list
+        </a>
+    </div> 
+</div>
+</form>
+{% endblock content %}

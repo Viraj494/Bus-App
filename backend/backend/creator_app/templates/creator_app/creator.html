@@ -1,0 +1,91 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block title %}Creators{% endblock %}
+
+{%block content%}
+
+<div class="py-20 grid grid-cols-3 items-center">
+    <figure class="col-span-1">
+        <img src="{{ creator.image.url }}" class="rounded-lg">
+    </figure>
+    
+   <div class="col-span-2 space-y-12 text-center">
+    <h1 class="text-7xl text-slate-300 font-bold">{{creator.title}}</h1>
+    <p class="text-slate-300">{{creator.description}}</p>
+</div>
+ </div>
+
+ <div class="py-12 bg-slate-800">
+   
+   <div class="px-12">
+    <h2 class="mb-12 text-5xl text-slate-300 text-center font-bold">Support me</h2>
+
+    <p class="text-xl text-slate-400 text-center">
+        This is just some random infokajs dflja sldkfj alsk jdfklasjlkf jsalkdf
+    </p>
+
+    <div class="mt-12 flex flex-row space-x-4 items-center justify-center py-4 px-6 inline-block text-xl text-white bg-sky-800 rounded-lg">
+        <label>Your email address:</label><br>
+        <input type="email" name="email" id="id_email">
+    </div>
+    
+
+    <div class="mt-12 flex flex-row space-x-4 items-center justify-center">
+        <a href="#" onclick="buy(1)" class="py-4 px-6 inline-block text-xl text-white bg-sky-800 rounded-lg">
+            Buy me "1" noodle $1
+        </a>
+    </div>
+    <div class="mt-12 flex flex-row space-x-4 items-center justify-center">
+        <a href="#" onclick="buy(2)" class="py-4 px-6 inline-block text-xl text-white bg-sky-800 rounded-lg">
+            Buy me "1" noodle $1
+        </a>
+    </div>
+    <div class="mt-12 flex flex-row space-x-4 items-center justify-center">
+        <a href="#" onclick="buy(3)" class="py-4 px-6 inline-block text-xl text-white bg-sky-800 rounded-lg">
+            Buy me "1" noodle $1
+        </a>
+    </div>
+            
+   </div>
+ </div>
+ <form method="post" action=".">
+    {% csrf_token %}
+
+    <input type="hidden" id="creator_id" value="{{creator.id}}">
+ </form>
+ {%endblock%}
+
+ {%block scripts%}
+ <script>
+    console.log('Creator page');
+
+    async function buy(amount) {
+        console.log('Buy', amount);
+
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const creatorId = document.getElementById('creator_id').value;
+        const email = document.getElementById('id_email').value;
+
+      //  console.log('token:', csrftoken)
+
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('creator_id', creatorId);
+        formData.append('amount', amount);
+
+        const response = await fetch('/api/create_support/',{
+            method: 'POST',
+            headers: {'X-CSRFToken': csrftoken 
+            },
+            body: formData
+        });
+        const data = await response.json();
+
+        console.log('data:', data);
+
+        window.location.href = data.url;
+    }
+ </script>
+ {%endblock%}  

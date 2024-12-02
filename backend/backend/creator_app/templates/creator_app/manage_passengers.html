@@ -1,0 +1,37 @@
+{% extends 'creator_app/base2.html' %}
+
+{% load static %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+
+<div class="py-16 bg-gray-100">
+    <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Edit Passengers</h2>
+
+    <div class="flex flex-col md:flex-row justify-center gap-6 px-4">
+        <a href="{% url 'creator_app:children_list' %}" 
+           class="flex-1 max-w-xs py-4 px-6 bg-green-200 text-green-900 text-center rounded-xl shadow-lg hover:bg-green-300 text-lg font-medium transition duration-300 ease-in-out">
+            Manage child details
+        </a>
+        <a href="{% url 'creator_app:adults_list' %}" 
+           class="flex-1 max-w-xs py-4 px-6 bg-blue-200 text-blue-900 text-center rounded-xl shadow-lg hover:bg-blue-300 text-lg font-medium transition duration-300 ease-in-out">
+           Manage adult details
+        </a>
+        <a href="{% url 'creator_app:childCard_list' %}" 
+           class="flex-1 max-w-xs py-4 px-6 bg-yellow-200 text-yellow-900 text-center rounded-xl shadow-lg hover:bg-yellow-300 text-lg font-medium transition duration-300 ease-in-out">
+            Manage child card details
+        </a>
+        <a href="{% url 'creator_app:adultsCard_list' %}" 
+           class="flex-1 max-w-xs py-4 px-6 bg-red-200 text-red-900 text-center rounded-xl shadow-lg hover:bg-red-300 text-lg font-medium transition duration-300 ease-in-out">
+           Manage adult card details
+        </a>
+
+        <a href="{% url 'creator_app:combined_data' %}" 
+           class="flex-1 max-w-xs py-4 px-6 bg-purple-200 text-red-900 text-center rounded-xl shadow-lg hover:bg-red-300 text-lg font-medium transition duration-300 ease-in-out">
+           View all details
+        </a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Bitcoin Transactions{% endblock %}
+
+{% block content %}
+<div class="py-20">
+    <h1 class="text-5xl text-slate-300 font-bold text-center">Bitcoin Transactions</h1>
+</div>
+
+<!-- Section to Create a New Bitcoin Transaction -->
+<div class="py-12 bg-slate-800">
+    <h2 class="text-3xl text-center text-slate-300 font-bold">Enter Bitcoin Transaction Data</h2>
+    <form id="transaction-form" method="post">
+        {% csrf_token %}
+        <label for="transaction_id">Transaction ID:</label>
+        <input type="text" id="transaction_id" name="transaction_id" required>
+    
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" step="0.01" required>
+    
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+            <option value="Failed">Failed</option>
+        </select>
+    
+        <button type="button" onclick="submitTransaction()">Submit</button>
+    </form>
+    
+</div>
+
+<!-- Section to Display Transactions -->
+<div class="py-12">
+    <h2 class="text-3xl text-center text-slate-300 font-bold">Your Bitcoin Transactions</h2>
+    <div class="px-12">
+        <table class="min-w-full bg-slate-700 text-white rounded-lg">
+            <thead>
+                <tr>
+                    <th class="py-4 px-6">Transaction ID</th>
+                    <th class="py-4 px-6">Amount (USD)</th>
+                    <th class="py-4 px-6">Status</th>
+                    <th class="py-4 px-6">Created At</th>
+                </tr>
+            </thead>
+            <tbody id="transaction-table">
+                {% for transaction in user.bitcoin_transactions.all %}
+                <tr>
+                    <td class="py-4 px-6">{{ transaction.transaction_id }}</td>
+                    <td class="py-4 px-6">{{ transaction.amount }}</td>
+                    <td class="py-4 px-6">{{ transaction.status }}</td>
+                    <td class="py-4 px-6">{{ transaction.created_at|date:"Y-m-d H:i:s" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="py-4 px-6 text-center">No transactions found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    async function submitTransaction() {
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const transactionId = document.getElementById('transaction_id').value;
+        const amount = document.getElementById('amount').value;
+        const status = document.getElementById('status').value;
+    
+        if (!transactionId || !amount || !status) {
+            alert("All fields are required!");
+            return;
+        }
+    
+        try {
+            const response = await fetch('/api/create_bitcoin_transaction/', {
+                method: 'POST', // Make sure this is POST
+                headers: {
+                    'X-CSRFToken': csrftoken,
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    transaction_id: transactionId,
+                    amount: amount,
+                    status: status,
+                }),
+            });
+    
+            const data = await response.json();
+            if (data.success) {
+                alert('Transaction created successfully!');
+                location.reload(); // Reload the page to fetch new transactions
+            } else {
+                alert('Error: ' + data.error);
+            }
+        } catch (err) {
+            alert('Error submitting transaction: ' + err.message);
+        }
+    }
+    
+    
+</script>
+{% endblock %}

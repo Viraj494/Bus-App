@@ -1,0 +1,50 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block title %}Creators{% endblock %}
+
+{%block content%}
+
+<div class="py-20 grid grid-cols-3 items-center">
+    <figure class="col-span-1">
+        <img src="{{ creator_app.image.url }}" class="rounded-lg">
+    </figure>
+    
+   <div class="col-span-2 space-y-12 text-center">
+    <h1 class="text-7xl text-slate-300 font-bold">{{creator_app.title}}</h1>
+    <p class="text-slate-300">{{creator_app.description}}</p>
+</div>
+ </div>
+
+ <div class="py-12 bg-slate-800">
+   
+   <div class="px-12">
+    <h2 class="mb-12 text-5xl text-slate-300 text-center font-bold">My Supporters</h2>
+
+    <p class="text-xl text-slate-400 text-center">
+        This is just some random infokajs dflja sldkfj alsk jdfklasjlkf jsalkdf
+    </p>
+    <div class="mt-12 text-center text-white space-y-5">
+        {% for support in supports %}
+        <p class="text-xl">
+            {{ support.email }} - 
+            {% if support.amount == 1 %}
+                One noodle
+            {% elif support.amount == 2 %}
+                Two noodles
+            {% else %}
+                ${{ support.amount }}
+            {% endif %}
+            ({{ support.created_at }})
+        </p>
+        {% endfor %}
+        <hr>
+        <p class="text-xl">Total: ${{ total }}</p>
+    </div>
+    
+            
+   </div>
+ </div>
+
+ {%endblock%}

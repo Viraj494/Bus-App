@@ -1,0 +1,51 @@
+{% extends "creator_app/base2.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off" class="space-y-6 bg-white shadow-lg rounded-lg p-8 max-w-4xl mx-auto">
+    {% csrf_token %}
+    
+    <div class="mb-4">
+        {{ form.name|as_crispy_field }}
+    </div>
+    <div class="mb-4">
+        {{ form.category|as_crispy_field }}
+    </div>
+    <div class="mb-4">
+        {{ form.card_id|as_crispy_field }}
+    </div>
+    <div class="mb-4">
+        {{ form.mobile|as_crispy_field }}
+    </div>
+    <div class="mb-4">
+        {{ form.email|as_crispy_field }}
+    </div>
+    <div class="mb-4">
+        {{ form.address|as_crispy_field }}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+            {{ form.p_from|as_crispy_field }}
+        </div>
+        <div>
+            {{ form.p_to|as_crispy_field }}
+        </div>
+    </div>
+
+    <div class="flex justify-between mt-6">
+        <a href="{% url 'creator_app:passenger_list' %}" class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow-md hover:bg-gray-300 transition">
+            <i class="fas fa-arrow-left mr-2"></i>
+            Back to the list you entered
+        </a>
+        <button type="submit" class="inline-flex items-center px-6 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition">
+            <i class="fas fa-check-circle mr-2"></i>
+            Submit
+        </button>
+        <a href="{% url 'creator_app:manage_passengers' %}" class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow-md hover:bg-gray-300 transition">
+            <i class="fas fa-arrow-right mr-2"></i>
+            Back to the list user entered
+        </a>
+    </div>
+</form>
+{% endblock content %}

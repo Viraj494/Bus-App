@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Django + Coinbase Charge</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="card w-25">
+        <div class="card-body">
+          <h5 class="card-title">{{ charge.name }}</h5>
+          <p class="card-text">
+            <span>{{ charge.description }}</span>
+            <br>
+            <span>${{ charge.pricing.local.amount }} {{ charge.pricing.local.currency }}</span>
+          </p>
+          <div>
+            <a class="btn btn-primary w-100" href="{{ charge.hosted_url }}">Purchase</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

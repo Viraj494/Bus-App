@@ -1,0 +1,41 @@
+{% extends "creator_app/base2.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="py-10 bg-gray-100">
+    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
+        <!-- Title -->
+        <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">Request Child NFC Card</h2>
+
+        <!-- Form -->
+        <form action="" method="post" autocomplete="off" class="space-y-6">
+            {% csrf_token %}
+            
+            <!-- Child Name Field -->
+            <div>
+                <label for="childName" class="block text-sm font-medium text-gray-700"></label>
+                {{ form.childName|as_crispy_field }}
+            </div>
+            
+            <!-- Child Address Field -->
+            <div>
+                <label for="childAddress" class="block text-sm font-medium text-gray-700"></label>
+                {{ form.childAddress|as_crispy_field }}
+            </div>
+            
+            <!-- Child Mobile Field -->
+            <div>
+                <label for="childMobile" class="block text-sm font-medium text-gray-700"></label>
+                {{ form.childMobile|as_crispy_field }}
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="flex justify-end">
+                <button type="submit" class="flex items-center px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
+                    <i class="fas fa-paper-plane mr-2"></i> Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

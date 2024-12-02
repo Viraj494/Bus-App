@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Pick Your Category{% endblock %}
+
+{% block content %}
+<div class="py-20 text-center space-y-8 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
+    <h1 class="text-6xl text-slate-200 font-extrabold tracking-wide">Pick Your Category</h1>
+    <p class="text-xl text-slate-400 font-light">
+        Select the appropriate category to proceed further.
+    </p>
+</div>
+
+<div class="py-16 bg-slate-800">
+    <div class="flex justify-center space-x-8">
+        <!-- Children Button -->
+        <a href="{% url 'creator_app:children_insert' %}" 
+           class="py-4 px-8 text-lg font-semibold text-white bg-green-500 rounded-lg shadow-lg hover:bg-green-400 transition-transform transform hover:scale-105">
+            👶 Children
+        </a>  
+
+        <!-- Adults Button -->
+        <a href="{% url 'creator_app:adults_insert' %}" 
+           class="py-4 px-8 text-lg font-semibold text-white bg-blue-500 rounded-lg shadow-lg hover:bg-blue-400 transition-transform transform hover:scale-105">
+            👩‍🦳 Adults
+        </a> 
+    </div>
+</div>
+
+{% endblock %}

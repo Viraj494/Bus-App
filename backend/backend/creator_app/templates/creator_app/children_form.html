@@ -1,0 +1,43 @@
+{% extends "creator_app/base2.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="py-10 bg-gray-100">
+    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
+        <!-- Form Title -->
+        <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">Children Add Locations</h2>
+
+        <!-- Form -->
+        <form action="" method="post" autocomplete="off" class="space-y-6">
+            {% csrf_token %}
+            
+            <!-- From Field -->
+            <div>
+                <label for="from" class="block text-sm font-medium text-gray-700"></label>
+                {{ form.c_from|as_crispy_field }}
+            </div>
+            
+            <!-- To Field -->
+            <div>
+                <label for="to" class="block text-sm font-medium text-gray-700"></label>
+                {{ form.c_to|as_crispy_field }}
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="flex justify-end">
+                <button type="submit" class="flex items-center px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
+                    <i class="fas fa-database mr-2"></i>
+                    Submit
+                </button>
+            </div>
+        </form>
+
+        <!-- Back to List -->
+        <div class="mt-6">
+            <a href="{% url 'creator_app:children_list' %}" class="block bg-gray-500 text-white text-center py-2 rounded-md hover:bg-gray-600">
+                <i class="fas fa-stream"></i> Back to the list
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
