@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<div class="py-20 bg-gray-900 text-center space-y-8">
+    <h1 class="text-6xl font-extrabold text-white">Admin dashboard</h1>
+    <p class="text-lg text-gray-400">
+        Discover how simple it is to showcase your talents and earn for your skills. Get started today!
+    </p>
+   
+</div>
+
+<div class="py-16 bg-gray-800">
+    <h2 class="text-4xl font-bold text-center text-white mb-12">Newest Creators</h2>
+
+    <div class="flex flex-col md:flex-row justify-center gap-6 px-4">
+        <a href="{% url 'creator_app:passenger_insert' %}" 
+           class="flex-1 max-w-xs py-4 px-6 bg-green-600 text-white text-center rounded-xl shadow-lg hover:bg-green-700 text-lg font-medium">
+            Add Passengers
+        </a>
+        <a href="{% url 'creator_app:manage_passengers' %}" 
+           class="flex-1 max-w-xs py-4 px-6 bg-blue-600 text-white text-center rounded-xl shadow-lg hover:bg-blue-700 text-lg font-medium">
+            Manage Passengers
+        </a>
+    </div>
+</div>
+
+{% endblock %}
