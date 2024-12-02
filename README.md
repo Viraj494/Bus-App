@@ -1,5 +1,4 @@
-# Sri Lanka Intelligent Bus Navigation and Passenger Information System 
-
+# Bus-App
 ## Overview
 
 The Sri Lanka Intelligent Bus Navigation and Passenger Information System is a project aimed at enhancing public transportation in Sri Lanka. The system provides real-time bus tracking, accurate arrival time predictions, and several features to improve the travel experience, including bus identification, school van tracking, voice activation for accessibility, and personalized notifications for bus arrivals.
