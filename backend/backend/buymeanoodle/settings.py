@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     "coinbase_commerce",
 ]
 
+# add middleware
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
