@@ -31,6 +31,7 @@ from django.shortcuts import render, redirect
 
 from creator.models import Creator
 
+# create a view for the home page
 
 def index(request):
     creators = Creator.objects.all()
