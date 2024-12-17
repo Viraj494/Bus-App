@@ -40,6 +40,7 @@ def index(request):
         try:
             creator = request.user.creator
         except Exception:
+            # if the user is not a creator, redirect them to the admin home page
             return redirect('create_app:admin_home')
         
     return render(request, 'core/index.html', {
