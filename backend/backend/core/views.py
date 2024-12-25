@@ -47,5 +47,7 @@ def index(request):
         'creators': creators
     })
     
+    # add admin home view
+    
 def admin_home(request):
     return render(request, 'creator_app/admin_home.html')        
