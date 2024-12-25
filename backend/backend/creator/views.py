@@ -7,6 +7,7 @@ from cryptomus import Client
 
 from .forms import CreatorForm
 from .models import Creator, Support
+# add crypto api key, merchant uuid, and payment key
 CRYPTO_API_KEY = "4b6b1a51-796d-491e-8835-8c45b5a2afd1"
 MERCHANT_UUID = '621379c1-acca-4252-b066-2e86bfccff04'
 PAYMENT_KEY = '1P0521ebLUozs8zAW2EOfNreI6DKi8qKeFuQaDWGzug8r3Wz7k32NCEdlzj5QjgaiagUfXisxmOqPND2HebpIfW1nB1aSrbuQg02PHvIxaj5opvEan9S52t92DV7C9bG'
