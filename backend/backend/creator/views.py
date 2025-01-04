@@ -30,6 +30,7 @@ def mypage(request):
         # Redirect to a page where the user can create a Creator object or show an error message
         return redirect('creator:edit')  # Assuming the edit view lets the user create a Creator
 
+# config sign up function
 
 def signup(request):
     if request.method == 'POST':
