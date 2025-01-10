@@ -49,6 +49,7 @@ def signup(request):
     })
 
 
+# add creater main function
 
 def creators(request):
     creators = Creator.objects.all()
