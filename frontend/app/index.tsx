@@ -41,7 +41,7 @@ const Index = () => {
   );
 };
 
-//styles added
+//new styles added 
 
 const styles = StyleSheet.create({
   container: {
