@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
 
 const Index = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);  // Track loading state
   const router = useRouter();
 
   const handleLogin = () => {
     if (username && password) {
-      // Simulate successful login by navigating to the home screen
-      router.push('/home');
+      setLoading(true);  // Start loading
+
+      // Simulate successful login with a timeout
+      setTimeout(() => {
+        setLoading(false);  // Stop loading
+        router.push('/home');
+      }, 1500);
     } else {
       Alert.alert('Error', 'Please enter both username and password');
     }
@@ -34,14 +40,18 @@ const Index = () => {
         value={password}
         onChangeText={setPassword}
       />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
+      <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={loading}>
+        {loading ? (
+          <ActivityIndicator size="small" color="#fff" />
+        ) : (
+          <Text style={styles.buttonText}>Login</Text>
+        )}
       </TouchableOpacity>
     </View>
   );
 };
 
-//new styles added 
+// New styles added for loading state
 
 const styles = StyleSheet.create({
   container: {
