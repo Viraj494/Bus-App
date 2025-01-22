@@ -83,6 +83,9 @@ def support_success(request, creator_id, support_id):
     return render(request, 'creator/success.html')
 
 
+# create etition function
+# add login required decorator to edit view
+
 def edit(request):
     try:
         creator = request.user.creator
