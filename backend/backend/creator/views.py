@@ -66,6 +66,8 @@ def creator(request, pk):
         'creator': creator
     })
 
+# add support function
+# add login required decorator to support view
 
 def support_success(request, creator_id, support_id):
     support = Support.objects.get(pk=support_id)
