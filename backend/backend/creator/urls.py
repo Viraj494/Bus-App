@@ -7,6 +7,7 @@ from . import views
 
 app_name = 'creator'
 
+# add paths for creator app
 
 urlpatterns = [
     path('api/create_support/', api.create_support, name='api_create_support'),
