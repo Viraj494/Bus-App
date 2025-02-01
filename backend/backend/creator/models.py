@@ -2,6 +2,8 @@ from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 
 
+# create a model for the creator
+
 class Creator(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
