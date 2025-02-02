@@ -11,6 +11,8 @@ class Creator(models.Model):
     user = models.OneToOneField(User, related_name='creator', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+# create a model for the creator's work
+
 class Support(models.Model):
     creator = models.ForeignKey(Creator, related_name='supports', on_delete=models.CASCADE)
     amount = models.IntegerField()
