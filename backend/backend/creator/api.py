@@ -6,6 +6,8 @@ from cryptomus import Client
 
 from .models import Creator, Support
 
+# add support function
+# add login required decorator to support view
 MERCHANT_UUID = '621379c1-acca-4252-b066-2e86bfccff04'
 PAYMENT_KEY = '1P0521ebLUozs8zAW2EOfNreI6DKi8qKeFuQaDWGzug8r3Wz7k32NCEdlzj5QjgaiagUfXisxmOqPND2HebpIfW1nB1aSrbuQg02PHvIxaj5opvEan9S52t92DV7C9bG'
 
