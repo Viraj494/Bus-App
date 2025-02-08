@@ -41,6 +41,7 @@ def create_support(request):
             'to_currency': 'USDT',
         }
 
+        # Create payment request
         payment = Client.payment(PAYMENT_KEY, MERCHANT_UUID)
 
         result = payment.create(data)
