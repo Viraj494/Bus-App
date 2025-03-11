@@ -172,15 +172,7 @@ void loop() {
       passengerCount = response.substring(passengerCountStart, passengerCountEnd);
     }
 
-    // Display the data on the LCD
-    lcd.clear();  // Clear previous content
-    lcd.setCursor(0, 0);  // Set cursor to top-left corner
-    lcd.print("Distance: ");
-    lcd.print(distance);  // Display the Distance value
-    lcd.print("KM"); 
-    lcd.setCursor(0, 1);  // Move to the next line
-    lcd.print("Passengers: ");
-    lcd.print(passengerCount);  // Display the Passenger Count value
+ 
 
     // Add a small delay before the next iteration
     delay(5000);  // 5-second delay
