@@ -79,7 +79,30 @@ app.get('/getdata', async (req, res) => {
   }
 });
 
+// Endpoint to update data in Firebase (PUT request)
+app.put('/update/:id', async (req, res) => {
+  const dataId = req.params.id;
+  const newData = req.body; // New data to update
 
+  if (!newData) {
+    return res.status(400).json({ error: 'No data to update' });
+  }
+
+  try {
+    // Authenticate with Firebase
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    console.log('Successfully authenticated:', userCredential.user.email);
+
+    // Update the existing data in Firebase
+    const dataRef = ref(database, 'data/' + dataId);
+    await update(dataRef, newData);
+
+    res.status(200).json({ message: 'Data successfully updated', dataId });
+  } catch (error) {
+    console.error('Error updating data in Firebase:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // get data from firebase by id
 app.get('/getdata/:id', async (req, res) => {
