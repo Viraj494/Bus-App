@@ -186,8 +186,5 @@ void loop() {
     delay(5000);  // 5-second delay
   }
 
-  // Close the connection to the server
- // client.stop();
-  //SerialMon.println("Disconnected from server.");
- // delay(10000);  // Wait for 10 seconds before retrying
+
 }

@@ -152,7 +152,7 @@ void loop() {
       return;
     }
 
-    // Prepare HTTP POST request data
+ 
     String httpRequestData = String("{\"latitude\":") + latitude + 
                              ",\"longitude\":" + longitude + 
                              ",\"speed\":" + speed + "}";
