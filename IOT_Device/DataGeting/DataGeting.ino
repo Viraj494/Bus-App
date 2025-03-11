@@ -1,5 +1,4 @@
 #define TINY_GSM_MODEM_SIM800  
-
 #include <TinyGsmClient.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
