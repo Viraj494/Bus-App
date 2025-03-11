@@ -63,7 +63,21 @@ app.post('/', async (req, res) => {
   }
 });
 
-
+// Endpoint to get data from Firebase (GET request)
+app.get('/getdata', async (req, res) => {
+  try {
+    const dbRef = ref(database, 'data');
+    const snapshot = await get(dbRef); // Get all data from the 'data' node
+    if (snapshot.exists()) {
+      res.status(200).json(snapshot.val()); // Send data as JSON
+    } else {
+      res.status(404).json({ message: 'No data found' });
+    }
+  } catch (error) {
+    console.error('Error getting data from Firebase:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Endpoint to update data in Firebase (PUT request)
 app.put('/update/:id', async (req, res) => {
