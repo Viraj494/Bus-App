@@ -132,24 +132,5 @@ void loop() {
     }
   }
 
-  // Check GPS status periodically (every 10 seconds)
-  static unsigned long gpsStatusPrevMillis = 0;
-  if (millis() - gpsStatusPrevMillis > 10000) {
-    gpsStatusPrevMillis = millis();
-    if (!gps.location.isValid()) {
-      Serial.println("Waiting for GPS signal...");
-    }
-  }
-
-  // If GPS data is valid, send it to the server
-  if (gps.location.isValid()) {
-    Serial.println("Sending GPS data to server...");
-
-    // Connect to server
-    if (!client.connect(server, port)) {
-      Serial.println("Connection failed!");
-      delay(10000);
-      return;
-    }
-
+  
  
