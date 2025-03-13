@@ -153,34 +153,3 @@ void loop() {
     }
 
  
-    String httpRequestData = String("{\"latitude\":") + latitude + 
-                             ",\"longitude\":" + longitude + 
-                             ",\"speed\":" + speed + "}";
-
-    client.print(String("PUT") + resource + " HTTP/1.1\r\n");
-    client.print(String("Host: ") + server + "\r\n");
-    //client.println("Connection: close");
-    client.println("Content-Type: application/json");
-    client.print("Content-Length: ");
-    client.println(httpRequestData.length());
-    client.println();
-    client.println(httpRequestData);
-
-    // Read the server response
-    unsigned long timeout = millis();
-    while (client.connected() && millis() - timeout < 10000L) {
-      if (client.available()) {
-        char c = client.read();
-        Serial.print(c);
-        timeout = millis();
-      }
-    }
-    //Serial.println("\nDisconnected from server.");
-
-    //client.stop();  // Stop the client
-    //modem.gprsDisconnect();  // Disconnect from GPRS
-    //Serial.println("GPRS disconnected.");
-  }
-
-  delay(30000);  // Send data every 30 seconds (adjust as needed)
-}
