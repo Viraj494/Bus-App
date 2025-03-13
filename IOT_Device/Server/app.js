@@ -12,7 +12,16 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(express.json());
 
-
+// Firebase Configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyALY_i4fAMJA3pNUXkJHOFfILbkTJiI8ZE",
+  authDomain: "esp32sliitresearch.firebaseapp.com",
+  databaseURL: "https://esp32sliitresearch-default-rtdb.firebaseio.com",
+  projectId: "esp32sliitresearch",
+  storageBucket: "esp32sliitresearch.appspot.com",
+  messagingSenderId: "957117000572",
+  appId: "1:957117000572:web:a5268b528db68a7e8692f9"
+};
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
