@@ -89,48 +89,5 @@ void setup() {
   Serial.println("GPS Module Test");
 }
 
-void loop() {
-  // Read GPS data
-  while (SerialGPS.available() > 0) {
-    if (gps.encode(SerialGPS.read())) {
-      if (gps.location.isValid() && gps.date.isValid() && gps.time.isValid()) {
-        latitude = gps.location.lat();
-        longitude = gps.location.lng();
-        year = gps.date.year();
-        month = gps.date.month();
-        date = gps.date.day();
-        hour = gps.time.hour();
-        minute = gps.time.minute();
-        second = gps.time.second();
-        speed = gps.speed.kmph();
 
-        // Adjust for time zone offset
-        hour += utcOffsetHours;
-        if (hour >= 24) {
-          hour -= 24;
-          date += 1;
-        }
-        minute += utcOffsetMinutes;
-        if (minute >= 60) {
-          minute -= 60;
-          hour += 1;
-        }
-
-        Serial.print("Latitude: ");
-        Serial.println(latitude, 6);
-        Serial.print("Longitude: ");
-        Serial.println(longitude, 6);
-        Serial.print("Date: ");
-        Serial.printf("%02d/%02d/%04d\n", date, month, year);
-        Serial.print("Time: ");
-        Serial.printf("%02d:%02d:%02d\n", hour, minute, second);
-        Serial.print("Speed: ");
-        Serial.println(speed, 2);
-      } else {
-        Serial.println("GPS data not valid yet...");
-      }
-    }
-  }
-
-  
  
