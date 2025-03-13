@@ -28,7 +28,9 @@ const firebaseApp = initializeApp(firebaseConfig);
 const database = getDatabase(firebaseApp);
 const auth = getAuth(firebaseApp);
 
-
+// Firebase Authentication Credentials
+const email = "it21192050@my.sliit.lk";
+const password = "200007901313";
 
 // Root Endpoint
 app.get('/get', (req, res) => {
