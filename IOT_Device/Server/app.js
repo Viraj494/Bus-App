@@ -23,7 +23,10 @@ const firebaseConfig = {
   appId: "1:957117000572:web:a5268b528db68a7e8692f9"
 };
 
-
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+const database = getDatabase(firebaseApp);
+const auth = getAuth(firebaseApp);
 
 // Firebase Authentication Credentials
 const email = "it21192050@my.sliit.lk";
