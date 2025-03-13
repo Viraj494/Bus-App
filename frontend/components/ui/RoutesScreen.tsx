@@ -20,6 +20,9 @@ type RegisterScreenNavigationProp = StackNavigationProp<
 type Props = {
   navigation: RegisterScreenNavigationProp;
 };
+type Props = {
+  navigation: RegisterScreenNavigationProp;
+};
 
 const RegisterScreen: React.FC<Props> = ({ navigation }) => {
   const [usernameAvailable, setUsernameAvailable] = useState<boolean>(false);
