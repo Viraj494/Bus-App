@@ -47,3 +47,13 @@ def book_seat(booking: SeatBooking):
 
     if not seat or seat["status"] == "booked":
         raise HTTPException(status_code=400, detail="Seat is already booked")
+# Book the seat
+    cursor.execute(
+        "UPDATE bus_seats SET status = 'booked', passenger_id = %s WHERE bus_id = %s AND seat_number = %s",
+        (booking.passenger_id, booking.bus_id, booking.seat_number)
+    )
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return {"message": f"Seat {booking.seat_number} booked successfully"}
