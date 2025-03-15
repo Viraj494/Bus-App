@@ -57,3 +57,17 @@ def book_seat(booking: SeatBooking):
     conn.close()
 
     return {"message": f"Seat {booking.seat_number} booked successfully"}
+
+# Cancel a seat booking
+@app.post("/cancel-booking/")
+def cancel_booking(bus_id: int, seat_number: str):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("UPDATE bus_seats SET status = 'available', passenger_id = NULL WHERE bus_id = %s AND seat_number = %s",
+                   (bus_id, seat_number))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return {"message": f"Booking for seat {seat_number} has been cancelled"}
