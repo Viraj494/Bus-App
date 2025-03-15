@@ -1,0 +1,15 @@
+import React, { useEffect, useState } from "react";
+import { View, FlatList, Alert, TouchableOpacity } from "react-native";
+import { Text, Button, Card } from "react-native-paper";
+import axios from "axios";
+
+const busId = 1;  // Replace with actual bus ID
+const passengerId = 101; // Replace with logged-in passenger ID
+
+const SeatBooking = () => {
+  const [seats, setSeats] = useState<string[]>([]);
+  const [selectedSeat, setSelectedSeat] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchAvailableSeats();
+  }, []);
