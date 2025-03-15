@@ -13,3 +13,17 @@ const SeatBooking = () => {
   useEffect(() => {
     fetchAvailableSeats();
   }, []);
+  onst fetchAvailableSeats = async () => {
+    try {
+      const response = await axios.get(`http://your-backend-url/available-seats/${busId}`);
+      setSeats(response.data.available_seats);
+    } catch (error) {
+      Alert.alert("Error", "Failed to fetch available seats.");
+    }
+  };
+
+  const bookSeat = async () => {
+    if (!selectedSeat) {
+      Alert.alert("Select a seat", "Please select a seat before booking.");
+      return;
+    }
