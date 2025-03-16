@@ -156,6 +156,13 @@ void loop() {
     String distance = "";
     String passengerCount = "";
 
+    // Find the "Distance" and "Passenger_Count" from the response
+    int distanceStart = response.indexOf("\"Distance\":\"");
+    if (distanceStart != -1) {
+      distanceStart += 12;  // Skip the "\"Distance\":\""
+      int distanceEnd = response.indexOf("\"", distanceStart);
+      distance = response.substring(distanceStart, distanceEnd);
+    }
 
     int passengerCountStart = response.indexOf("\"Passenger_Count\":\"");
     if (passengerCountStart != -1) {
