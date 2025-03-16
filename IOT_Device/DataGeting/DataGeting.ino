@@ -127,6 +127,19 @@ void loop() {
         response = ""; // Reset for content
       }
 
+      // Check for end of HTTP headers (an empty line signifies end of headers)
+      if (c == '\n' && !headerEnded) {
+        headerEnded = true;
+        continue;  // Skip the empty line after headers
+      }
+
+      // Collect the response content after headers
+      if (headerEnded) {
+        response += c;
+      }
+
+      timeout = millis();
+    }
   }
 
   // Display the response content
