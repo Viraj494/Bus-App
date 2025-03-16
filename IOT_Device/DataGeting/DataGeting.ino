@@ -164,12 +164,7 @@ void loop() {
       distance = response.substring(distanceStart, distanceEnd);
     }
 
-    int passengerCountStart = response.indexOf("\"Passenger_Count\":\"");
-    if (passengerCountStart != -1) {
-      passengerCountStart += 19;  // Skip the "\"Passenger_Count\":\""
-      int passengerCountEnd = response.indexOf("\"", passengerCountStart);
-      passengerCount = response.substring(passengerCountStart, passengerCountEnd);
-    }
+  
 
     // Display the data on the LCD
     lcd.clear();  // Clear previous content
