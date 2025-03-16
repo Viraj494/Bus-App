@@ -142,7 +142,15 @@ void loop() {
     }
   }
 
-  
+  // Display the response content
+  if (response.length() == 0) {
+    SerialMon.println("No data received from the server.");
+  } else {
+    // Display status code and body in Serial Monitor
+    SerialMon.print("HTTP Status Code: ");
+    SerialMon.println(statusCode);
+    SerialMon.println("Response:");
+    SerialMon.println(response);
 
     // Parse the JSON response to extract Distance and Passenger_Count
     String distance = "";
