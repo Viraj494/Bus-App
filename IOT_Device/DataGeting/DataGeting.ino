@@ -120,7 +120,12 @@ void loop() {
     if (client.available()) {
       char c = client.read();
 
-  
+      // Capture status code (first line of the response)
+      if (statusCode.length() == 0 && c == '\n') {
+        // Capture status line (e.g., "HTTP/1.1 200 OK")
+        statusCode = response;
+        response = ""; // Reset for content
+      }
 
       // Check for end of HTTP headers (an empty line signifies end of headers)
       if (c == '\n' && !headerEnded) {
