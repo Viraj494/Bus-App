@@ -96,7 +96,16 @@ void loop() {
   }
   SerialMon.println("Connected.");
 
- 
+  // Prepare HTTP GET request with added headers
+  client.print("GET " + String(resource) + " HTTP/1.1\r\n");
+  client.print("Host: ");
+  client.print(server);
+  client.print("\r\n");
+  client.print("Connection: close\r\n");
+  client.print("User-Agent: Mozilla/5.0\r\n");  // Add a User-Agent string
+  client.print("Accept: */*\r\n");  // Accept all content types
+  client.print("Content-Type: application/json\r\n");  // Adjust as needed
+  client.println("\r\n");  // End of headers
 
   // Read response
   String response = "";
