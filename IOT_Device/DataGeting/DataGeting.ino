@@ -118,7 +118,7 @@ void loop() {
   // Read the response from the server
   while (client.connected() && millis() - timeout < 20000L) {  // Increased timeout
     if (client.available()) {
-      char c = client.read();
+  
 
       // Capture status code (first line of the response)
       if (statusCode.length() == 0 && c == '\n') {
