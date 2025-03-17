@@ -14,7 +14,7 @@ const char gprsPass[] = "";          // GPRS Password (leave blank if not requir
 const char simPIN[]   = ""; 
 
 // Server details
-const char server[] = "3.86.100.41";  // Server IP
+const char server[] = "157.245.61.95";  // Server IP
 const char resource[] = "/update/-OCh1E_ftKFuVrGk9F0n"; // Resource path
 const int  port = 5000;                // HTTP port
 
