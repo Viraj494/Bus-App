@@ -1,0 +1,74 @@
+import React, { useEffect, useState } from "react";
+import { View, FlatList, Alert, TouchableOpacity } from "react-native";
+import { Text, Button, Card } from "react-native-paper";
+import axios from "axios";
+
+const busId = 1;  // Replace with actual bus ID
+const passengerId = 101; // Replace with logged-in passenger ID
+
+const SeatBooking = () => {
+  const [seats, setSeats] = useState<string[]>([]);
+  const [selectedSeat, setSelectedSeat] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchAvailableSeats();
+  }, []);
+  onst fetchAvailableSeats = async () => {
+    try {
+      const response = await axios.get(`http://your-backend-url/available-seats/${busId}`);
+      setSeats(response.data.available_seats);
+    } catch (error) {
+      Alert.alert("Error", "Failed to fetch available seats.");
+    }
+  };
+
+  const bookSeat = async () => {
+    if (!selectedSeat) {
+      Alert.alert("Select a seat", "Please select a seat before booking.");
+      return;
+    }
+    try {
+      const response = await axios.post("http://your-backend-url/book-seat/", {
+        bus_id: busId,
+        seat_number: selectedSeat,
+        passenger_id: passengerId,
+      });
+      Alert.alert("Success", response.data.message);
+      fetchAvailableSeats();
+    } catch (error) {
+      Alert.alert("Error", "Seat booking failed.");
+    }
+  };
+
+  return (
+    <View style={{ flex: 1, padding: 20 }}>
+      <Text style={{ fontSize: 24, fontWeight: "bold", textAlign: "center", marginBottom: 15 }}>
+        Select a Seat
+      </Text>
+      <FlatList
+        data={seats}
+        keyExtractor={(item) => item}
+        numColumns={4}
+        contentContainerStyle={{ alignItems: "center" }}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => setSelectedSeat(item)}
+            style={{
+              margin: 10,
+              padding: 15,
+              borderRadius: 10,
+              backgroundColor: selectedSeat === item ? "#007bff" : "#ddd",
+            }}
+          >
+            <Text style={{ fontSize: 18, fontWeight: "bold", color: "#fff" }}>{item}</Text>
+          </TouchableOpacity>
+        )}
+      />
+      <Button mode="contained" onPress={bookSeat} style={{ marginTop: 20 }}>
+      Book Seat
+    </Button>
+  </View>
+);
+};
+
+export default SeatBooking;
